@@ -2,7 +2,7 @@ const routes = require('express').Router();
 let controller = require('../controllers/customers');
 controller = new controller();
 
-routes.get("/", async (req, res, next) => {
+routes.get("/customer", async (req, res, next) => {
   try {
     await controller.getAll(req, res);
   }
@@ -11,7 +11,7 @@ routes.get("/", async (req, res, next) => {
   }
 });
 
-routes.post("/", async (req, res, next) => {
+routes.post("/customer", async (req, res, next) => {
   try {
     await controller.insert(req, res);
   }
@@ -20,7 +20,7 @@ routes.post("/", async (req, res, next) => {
   }
 });
 
-routes.put("/:cpf", async (req, res, next) => {
+routes.put("/customer/:cpf", async (req, res, next) => {
   try {
     await controller.change(req, res);
   }
@@ -29,7 +29,7 @@ routes.put("/:cpf", async (req, res, next) => {
   }
 });
 
-routes.delete("/:cpf", async (req, res, next) => {
+routes.delete("/customer/:cpf", async (req, res, next) => {
   try {
     await controller.delete(req, res);
   }
@@ -38,13 +38,17 @@ routes.delete("/:cpf", async (req, res, next) => {
   }
 });
 
-routes.get("/:cpf", async (req, res, next) => {
+routes.get("/customer/:cpf", async (req, res, next) => {
   try {
     await controller.getOne(req, res);
   }
   catch (error) {
     res.status(500).json({ error: error.message || error });
   }
+});
+
+routes.get("/", async (req, res, next) => {
+  res.send('OK')
 });
 
 module.exports = routes;
