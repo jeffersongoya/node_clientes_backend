@@ -9,7 +9,7 @@ app.use(cors());
 
 const routes = require("./routes/routes");
 
-app.use(routes);
+app.use(routes); 
 
 const porta = process.env.PORT || 3001; //necessary to integrate heroku
 app.listen(porta, () => {
