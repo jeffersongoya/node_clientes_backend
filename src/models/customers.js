@@ -42,8 +42,7 @@ class Customer {
   };
 
   static getOne = async cpf => {
-    let response = await neo4j.execute(`MATCH (c:Customer) WHERE c.cpf = "${cpf}" RETURN c`);
-    //let response = await neo4j.execute(`MATCH (c:Customer) WHERE c.cpf = '${cpf}' RETURN c`);
+    let response = await neo4j.execute(`MATCH (c:Customer) WHERE c.cpf = '${cpf}' RETURN c`);
 
     return response;
   };

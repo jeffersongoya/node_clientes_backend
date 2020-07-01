@@ -33,8 +33,13 @@ class ControllerCustomer {
       throw Error("Cpf não foi preenchido")
     }
 
-    if ((email != "") && (!email.indexOf("@"))) {
+    if ((email != "") && (email.indexOf("@") == -1)) {
       throw Error("Email inválido")
+    }
+
+    const exist = await Customer.getOne(cpf);
+    if (exist.length > 0) {
+      throw Error("CPF já existe")
     }
 
     let ins = await Customer.insert({
@@ -61,7 +66,7 @@ class ControllerCustomer {
       throw Error("Cpf não foi preenchido")
     }
 
-    if ((email != "") && (!email.indexOf("@"))) {
+    if ((email != "") && (email.indexOf("@") == -1)) {
       throw Error("Email inválido")
     }
 
